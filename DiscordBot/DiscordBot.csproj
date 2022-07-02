@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\netcoreapp3.1\config.json" />
+    <Folder Include="bin\Debug\netcoreapp3.1\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DSharpPlus" Version="4.2.0-nightly-01091" />
-    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.2.0-nightly-01091" />
-    <PackageReference Include="DSharpPlus.Interactivity" Version="4.2.0-nightly-01091" />
+    <ProjectReference Include="..\..\DSharpPlus-Repo\DSharpPlus.CommandsNext\DSharpPlus.CommandsNext.csproj" />
+    <ProjectReference Include="..\..\DSharpPlus-Repo\DSharpPlus.Interactivity\DSharpPlus.Interactivity.csproj" />
+    <ProjectReference Include="..\..\DSharpPlus-Repo\DSharpPlus\DSharpPlus.csproj" />
   </ItemGroup>
-
+	
 </Project>

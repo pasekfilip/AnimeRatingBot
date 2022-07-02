@@ -15,7 +15,6 @@ namespace DiscordBot.Commands
     {
         [Command("rate")]
         public async Task Rate(CommandContext ctx)
-
         {
             var dd = DiscordEmoji.FromGuildEmote(ctx.Client, 850708320830226503);
             var interactivity = ctx.Client.GetInteractivity();

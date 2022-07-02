@@ -23,23 +23,20 @@ namespace DiscordBot
         public async Task RunAsync()
         {
             var json = string.Empty;
-
-            using (var fs = File.OpenRead("config.json"))
-            using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
+            using (var sr = new StreamReader("../../../config.json", new UTF8Encoding(false)))
             {
                 json = await sr.ReadToEndAsync().ConfigureAwait(false);
             }
             var configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
 
-            var config = new DiscordConfiguration
+            Client = new DiscordClient(new DiscordConfiguration
             {
                 Token = configJson.Token,
                 TokenType = TokenType.Bot,
+                Intents = DiscordIntents.All,
                 AutoReconnect = true,
                 MinimumLogLevel = LogLevel.Debug
-            };
-            Client = new DiscordClient(config);
-
+            });
 
             Client.Ready += OnClientReady;
             Client.MessageCreated += OnMessageCreated;
@@ -77,7 +74,7 @@ namespace DiscordBot
 
             if (e.Channel == animeToRate && e.Author == mee6)
             {
-                var namesOfEmojies = new string[] { ":Rate5outof5:", ":Rate4outof5:", ":Rate3outof5:", ":Rate2outof5", ":Rate1outof5:" };
+                var namesOfEmojies = new string[] { ":Rate5outof5:", ":Rate4outof5:", ":Rate3outof5:", ":Rate2outof5:", ":Rate1outof5:" };
                 var listOfRatings = new List<DiscordEmoji>();
                 var message = e.Message;
                 foreach (var nameOfEmoji in namesOfEmojies)
